@@ -29,6 +29,27 @@ if(cantidad !== ''){
     url += `amount=${cantidad}&`;
 }
 
+//Crear Fetch
+fetch(url)
+.then(function(res){
+    return res.json();
+})
+.then(function(data){
+    let html = `<h2>Nombres Generados</h2>`;
+    html += `<ul class="lista">`;
+    data.forEach(function(nombre) {
+        html += `
+        <li>${nombre.name}</li>
+        `;
+    })
+    html += `</ul>`;
+    document.querySelector('#resultado').innerHTML = html;
+})
+.catch(function(error){
+    console.log(error);
+})
+
+/*
 //Conectar con AJAX
 
 //Iniciar XMLHTTPRequest
@@ -53,9 +74,6 @@ xhr.onload = function() {
         document.getElementById('resultado').innerHTML = htmlNombres;
     }
 }
-
-//Enviar el Request
-xhr.send();
-
+*/
 }
 
