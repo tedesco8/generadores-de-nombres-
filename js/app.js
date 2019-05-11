@@ -31,6 +31,21 @@ if(cantidad !== ''){
 
 //Crear Fetch
 fetch(url)
+.then(res => res.json())
+.then(data => {
+    let html = `<h2>Nombres Generados</h2>`;
+    html += `<ul class="lista">`;
+    data.forEach(nombre => {
+        html += `
+        <li>${nombre.name}</li>
+        `;
+    })
+    html += `</ul>`;
+    document.querySelector('#resultado').innerHTML = html;
+})
+.catch(error => console.log(error))
+//Con funciones convencionales
+/*
 .then(function(res){
     return res.json();
 })
@@ -48,8 +63,9 @@ fetch(url)
 .catch(function(error){
     console.log(error);
 })
+----------------------------------------------------------------------------*/
 
-/*
+/*----------------------------------------------------------------------------
 //Conectar con AJAX
 
 //Iniciar XMLHTTPRequest
